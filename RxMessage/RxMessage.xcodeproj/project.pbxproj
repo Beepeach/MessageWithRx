@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF4D6DC4846E67C8B279D7C2 /* Pods_RxMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAD022ABF944BC00EDB65D2 /* Pods_RxMessage.framework */; };
+		EE3FA4932817BF11001C55CE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3FA4922817BF11001C55CE /* Message.swift */; };
 		EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5E96952817B9EA00D78938 /* AppDelegate.swift */; };
 		EE5E96982817B9EA00D78938 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5E96972817B9EA00D78938 /* SceneDelegate.swift */; };
 		EE5E969A2817B9EA00D78938 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5E96992817B9EA00D78938 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 		0BAD022ABF944BC00EDB65D2 /* Pods_RxMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE0735097E4168F5212CDA9 /* Pods-RxMessage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMessage.debug.xcconfig"; path = "Target Support Files/Pods-RxMessage/Pods-RxMessage.debug.xcconfig"; sourceTree = "<group>"; };
 		CF62C0177112EE0952F853B2 /* Pods-RxMessage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMessage.release.xcconfig"; path = "Target Support Files/Pods-RxMessage/Pods-RxMessage.release.xcconfig"; sourceTree = "<group>"; };
+		EE3FA4922817BF11001C55CE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EE5E96922817B9EA00D78938 /* RxMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5E96952817B9EA00D78938 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE5E96972817B9EA00D78938 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,8 +60,15 @@
 				8FE0735097E4168F5212CDA9 /* Pods-RxMessage.debug.xcconfig */,
 				CF62C0177112EE0952F853B2 /* Pods-RxMessage.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EE3FA4912817BF07001C55CE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE3FA4922817BF11001C55CE /* Message.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EE5E96892817B9EA00D78938 = {
@@ -83,6 +92,7 @@
 		EE5E96942817B9EA00D78938 /* RxMessage */ = {
 			isa = PBXGroup;
 			children = (
+				EE3FA4912817BF07001C55CE /* Model */,
 				EE5E96952817B9EA00D78938 /* AppDelegate.swift */,
 				EE5E96972817B9EA00D78938 /* SceneDelegate.swift */,
 				EE5E96992817B9EA00D78938 /* ViewController.swift */,
@@ -212,6 +222,7 @@
 			files = (
 				EE5E969A2817B9EA00D78938 /* ViewController.swift in Sources */,
 				EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */,
+				EE3FA4932817BF11001C55CE /* Message.swift in Sources */,
 				EE5E96982817B9EA00D78938 /* SceneDelegate.swift in Sources */,
 				EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */,
 			);
