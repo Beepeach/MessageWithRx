@@ -35,12 +35,25 @@ class TextTableViewCell: UITableViewCell {
     }
     
     private func setup() {
+        contentView.addSubview(containerView)
+        containerView.addSubview(textMessageLabel)
+        
+        /* Then의 do를 이용한 코드 예시
+        containerView.do {
+            $0.addSubview(textMessageLabel)
+            $0.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(8)
+                $0.bottom.trailing.equalToSuperview().offset(-8)
+                $0.leading.greaterThanOrEqualToSuperview().offset(8)
+            }
+        }
+        */
+        
         setupContainerView()
         setupTextMessageLabel()
     }
     
     private func setupContainerView() {
-        contentView.addSubview(containerView)
         containerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.bottom.trailing.equalToSuperview().offset(-8)
@@ -49,7 +62,6 @@ class TextTableViewCell: UITableViewCell {
     }
     
     private func setupTextMessageLabel() {
-        containerView.addSubview(textMessageLabel)
         textMessageLabel.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
         }
