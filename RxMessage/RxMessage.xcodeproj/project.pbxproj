@@ -13,6 +13,7 @@
 		EE5E969D2817B9EA00D78938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5E969B2817B9EA00D78938 /* Main.storyboard */; };
 		EE5E969F2817B9EB00D78938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE5E969E2817B9EB00D78938 /* Assets.xcassets */; };
 		EE5E96A22817B9EB00D78938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5E96A02817B9EB00D78938 /* LaunchScreen.storyboard */; };
+		EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		EE5E969E2817B9EB00D78938 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE5E96A12817B9EB00D78938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE5E96A32817B9EB00D78938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				EE5E96952817B9EA00D78938 /* AppDelegate.swift */,
 				EE5E96972817B9EA00D78938 /* SceneDelegate.swift */,
 				EE5E96992817B9EA00D78938 /* ViewController.swift */,
+				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
 				EE5E969B2817B9EA00D78938 /* Main.storyboard */,
 				EE5E969E2817B9EB00D78938 /* Assets.xcassets */,
 				EE5E96A02817B9EB00D78938 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				EE5E969A2817B9EA00D78938 /* ViewController.swift in Sources */,
 				EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */,
 				EE5E96982817B9EA00D78938 /* SceneDelegate.swift in Sources */,
+				EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
