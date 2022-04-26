@@ -12,20 +12,31 @@ import SnapKit
 import Then
 
 class MessageRoomViewController: UIViewController {
+    // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
-    
-    private let dummyData: Observable<[Message]> = Observable.of([
+    private let dummyData = BehaviorRelay<[Message]>(value: [
         Message(type: .text, who: "me", body: "Hello RxSwift!!"),
-        Message(type: .image, who: "you", body: "imageURL?? 뭐가 와야할까"),
-        Message(type: .text, who: "me", body: "Good")
+        Message(type: .image, who: "you", body: imageURL),
+        Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood"),
+        Message(type: .text, who: "me", body: "Hello"),
+        Message(type: .text, who: "me", body: "안녕하세요?\n반가워요 전혀 Rx적이지 않네요?"),
+        Message(type: .text, who: "me", body: "Bad\nBad\nGoodGoodGood"),
+        Message(type: .image, who: "you", body: anotherImageURL),
+        Message(type: .text, who: "me", body: "HAHAHAH\nHUHUHUHUHU\nGoodGoodGood"),
+        Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood")
     ])
     
-    private var messageTableView: UITableView = UITableView().then {
+    // MARK: Properties
+    var messageTableView: UITableView = UITableView().then {
         $0.backgroundColor = .systemTeal
+        $0.separatorStyle = .none
+        
+        $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
+        $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
     }
     
-    private var cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: "cell")
     
+    // MARK: VCLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,19 +57,48 @@ class MessageRoomViewController: UIViewController {
     }
     
     private func bindMessageTableView() {
-        dummyData.bind(to: messageTableView.rx.items) { tableView, index, message in
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-            
-            cell.textLabel?.text = message.body
-            
-            return cell
+        rx.viewWillAppear
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.dummyData
+            }.bind(to: messageTableView.rx.items) { tableView, index, message in
+                let indexPath: IndexPath = IndexPath(row: index, section: 0)
+                
+                switch message.type {
+                case .text:
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell.identifier, for: indexPath) as? TextTableViewCell else {
+                        return TextTableViewCell()
+                    }
+                    
+                    cell.textMessageLabel.text = message.body
+                    
+                    return cell
+                case .image:
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier, for: indexPath) as? ImageTableViewCell else {
+                        return ImageTableViewCell()
+                    }
+                    cell.messageImageView.image = self.getImage(from: message.body)
+                    
+                    return cell
+                }
+            }
+            .disposed(by: bag)
+    }
+    
+    private func getImage(from url: String) -> UIImage? {
+        guard let url = URL(string: url) else {
+            return nil
         }
-        .disposed(by: bag)
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        
+        return UIImage(data: data)
     }
 }
 
 
-
+// MARK: - Previews
 #if DEBUG
 import SwiftUI
 
