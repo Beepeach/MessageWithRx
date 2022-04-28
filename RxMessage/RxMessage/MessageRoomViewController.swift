@@ -14,7 +14,7 @@ import Then
 class MessageRoomViewController: UIViewController {
     // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
-    private let dummyData = BehaviorRelay<[Message]>(value: [
+    let dummyData = BehaviorRelay<[Message]>(value: [
         Message(type: .text, who: "me", body: "Hello RxSwift!!"),
         Message(type: .image, who: "you", body: imageURL),
         Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood"),
