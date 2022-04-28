@@ -17,21 +17,18 @@ final class MessageRoomViewModel {
     var messages: Driver<[Message]>
     
     // MARK: Service
-    
+    private let messageService: MessageService
     
     // MARK: Init
-    init(viewController: UIViewController) {
+    init(messageService: MessageService) {
+        self.messageService = messageService
+        
         let initMessage = viewWillAppearSubject
-            .flatMap { () -> BehaviorRelay<[Message]> in
-                guard let messageVC = viewController as? MessageRoomViewController else {
-                    return BehaviorRelay<[Message]>(value: [])
-                }
-                
-                return messageVC.dummyData
+            .flatMap {
+                messageService.sendMessage()
             }
             .asDriver(onErrorJustReturn: [])
         
-
         messages = initMessage
     }
 }
