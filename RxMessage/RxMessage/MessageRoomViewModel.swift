@@ -17,16 +17,14 @@ final class MessageRoomViewModel {
     var messages: Driver<[Message]>
     
     // MARK: Service
-    private let messageService: MessageService
+    let messageService: MessageService
     
     // MARK: Init
     init(messageService: MessageService) {
         self.messageService = messageService
         
         let initMessage = viewWillAppearSubject
-            .flatMap {
-                messageService.sendMessage()
-            }
+            .flatMap { messageService.sendMessage() }
             .asDriver(onErrorJustReturn: [])
         
         messages = initMessage

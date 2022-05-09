@@ -10,21 +10,38 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import Then
+import Action
 
 class MessageRoomViewController: UIViewController {
     // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
-   
+    private let viewModel: MessageRoomViewModel
+    
+    private let zoomAction: CocoaAction = Action {
+        print("Zoom!!")
+        return Observable.empty()
+    }
     
     // MARK: Properties
     var messageTableView: UITableView = UITableView().then {
         $0.backgroundColor = .systemTeal
-        $0.separatorStyle = .none
         
         $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
         $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
+        
+        $0.separatorStyle = .none
     }
     
+    // MARK: Initializer
+    init(viewModel: MessageRoomViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.viewModel = MessageRoomViewModel(messageService: DummyMessageSender())
+        super.init(coder: coder)
+    }
     
     // MARK: VCLifeCycle
     override func viewDidLoad() {
@@ -32,6 +49,11 @@ class MessageRoomViewController: UIViewController {
         
         setupUI()
         bindMessageTableView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        messageTableView.separatorStyle = .none
     }
     
     private func setupUI() {
@@ -48,10 +70,11 @@ class MessageRoomViewController: UIViewController {
     
     private func bindMessageTableView() {
         rx.viewWillAppear
-            .withUnretained(self)
-            .flatMap { owner, _ in
-                owner.dummyData
-            }.bind(to: messageTableView.rx.items) { tableView, index, message in
+            .bind(to: viewModel.viewWillAppearSubject)
+            .disposed(by: bag)
+        
+        viewModel.messages
+            .drive(messageTableView.rx.items) { tableView, index, message in
                 let indexPath: IndexPath = IndexPath(row: index, section: 0)
                 
                 switch message.type {
@@ -69,10 +92,13 @@ class MessageRoomViewController: UIViewController {
                     }
                     cell.messageImageView.image = self.getImage(from: message.body)
                     
+                    
+                    cell.zoomInButton.rx
+                        .bind(to: self.zoomAction) { _ in }
+                        
                     return cell
                 }
-            }
-            .disposed(by: bag)
+            }.disposed(by: bag)
     }
     
     private func getImage(from url: String) -> UIImage? {
@@ -94,7 +120,8 @@ import SwiftUI
 
 struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return MessageRoomViewController()
+        let viewModel = MessageRoomViewModel(messageService: DummyMessageSender())
+        return MessageRoomViewController(viewModel: viewModel)
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

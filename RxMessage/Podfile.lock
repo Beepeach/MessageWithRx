@@ -1,4 +1,7 @@
 PODS:
+  - Action (5.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxBlocking (6.5.0):
     - RxSwift (= 6.5.0)
   - RxCocoa (6.5.0):
@@ -13,6 +16,7 @@ PODS:
   - Then (2.7.0)
 
 DEPENDENCIES:
+  - Action
   - RxBlocking
   - RxCocoa
   - RxSwift
@@ -22,6 +26,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Action
     - RxBlocking
     - RxCocoa
     - RxRelay
@@ -31,6 +36,7 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
+  Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   RxBlocking: 04b5fd28bb5ea49f7d64b80db8bbfe50d9cc1c7d
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
@@ -39,6 +45,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 51a90daf05f47227b88afc2f623f2c9aff028550
+PODFILE CHECKSUM: 0c836fb3b594a5524466a8527d6e6f598fcb6747
 
 COCOAPODS: 1.11.2

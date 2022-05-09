@@ -35,6 +35,7 @@ class TextTableViewCell: UITableViewCell {
     }
     
     private func setup() {
+        self.selectionStyle = .none
         contentView.addSubview(containerView)
         containerView.addSubview(textMessageLabel)
         
