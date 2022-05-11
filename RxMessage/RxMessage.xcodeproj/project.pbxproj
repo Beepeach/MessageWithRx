@@ -137,19 +137,18 @@
 		EE5E96942817B9EA00D78938 /* RxMessage */ = {
 			isa = PBXGroup;
 			children = (
+				EEE23501282B90B600FBF546 /* Extension */,
+				EEE23500282B90A700FBF546 /* Service */,
+				EEE234FF282B909600FBF546 /* View */,
+				EEE234FE282B908A00FBF546 /* ViewController */,
+				EEE234FD282B907F00FBF546 /* ViewModel */,
 				EE3FA4912817BF07001C55CE /* Model */,
 				EE5E96952817B9EA00D78938 /* AppDelegate.swift */,
 				EE5E96972817B9EA00D78938 /* SceneDelegate.swift */,
-				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
-				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
-				EE3FA4942817CD1D001C55CE /* TextTableViewCell.swift */,
-				EE3FA4962817D62E001C55CE /* ImageTableViewCell.swift */,
 				EE5E969B2817B9EA00D78938 /* Main.storyboard */,
 				EE5E96A02817B9EB00D78938 /* LaunchScreen.storyboard */,
 				EE5E969E2817B9EB00D78938 /* Assets.xcassets */,
 				EE5E96A32817B9EB00D78938 /* Info.plist */,
-				EE3FA49A2817F7DD001C55CE /* ViewWillAppear+Rx.swift */,
-				EE72A6AF281A1F91008777D6 /* MessageService.swift */,
 			);
 			path = RxMessage;
 			sourceTree = "<group>";
@@ -162,6 +161,47 @@
 				EE72A6B5281A2903008777D6 /* MessageServiceTests.swift */,
 			);
 			path = RxMessageTests;
+			sourceTree = "<group>";
+		};
+		EEE234FD282B907F00FBF546 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EEE234FE282B908A00FBF546 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EEE234FF282B909600FBF546 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3FA4942817CD1D001C55CE /* TextTableViewCell.swift */,
+				EE3FA4962817D62E001C55CE /* ImageTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EEE23500282B90A700FBF546 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE72A6AF281A1F91008777D6 /* MessageService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EEE23501282B90B600FBF546 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EE3FA49A2817F7DD001C55CE /* ViewWillAppear+Rx.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
