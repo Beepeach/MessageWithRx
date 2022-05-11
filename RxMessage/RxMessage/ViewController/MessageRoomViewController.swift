@@ -39,7 +39,7 @@ class MessageRoomViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        self.viewModel = MessageRoomViewModel(messageService: DummyMessageSender())
+        self.viewModel = MessageRoomViewModel(messageService: DummyMessageSender(), sceneCoordinator: SceneCoordinator(window: UIWindow()))
         super.init(coder: coder)
     }
     
@@ -115,12 +115,13 @@ class MessageRoomViewController: UIViewController {
 
 
 // MARK: - Previews
+/*
 #if DEBUG
 import SwiftUI
 
 struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        let viewModel = MessageRoomViewModel(messageService: DummyMessageSender())
+        let viewModel = MessageRoomViewModel(messageService: DummyMessageSender(), sceneCoordinator: SceneCoordinator(window: <#T##UIWindow#>))
         return MessageRoomViewController(viewModel: viewModel)
     }
     
@@ -134,4 +135,4 @@ struct MessageRoomPreviewProvider: PreviewProvider {
     }
 }
 #endif
-
+*/

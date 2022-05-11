@@ -30,6 +30,8 @@
 		EEE23508282B947400FBF546 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23507282B947400FBF546 /* SceneCoordinatorType.swift */; };
 		EEE2350A282B95F300FBF546 /* SceneTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23509282B95F300FBF546 /* SceneTransitionStyle.swift */; };
 		EEE2350C282B966E00FBF546 /* SceneTransitionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350B282B966E00FBF546 /* SceneTransitionError.swift */; };
+		EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */; };
+		EEE23510282BA16200FBF546 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		EEE23507282B947400FBF546 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
 		EEE23509282B95F300FBF546 /* SceneTransitionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransitionStyle.swift; sourceTree = "<group>"; };
 		EEE2350B282B966E00FBF546 /* SceneTransitionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransitionError.swift; sourceTree = "<group>"; };
+		EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 		EEE234FD282B907F00FBF546 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */,
 				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
 			);
 			path = ViewModel;
@@ -223,6 +228,7 @@
 				EEE23507282B947400FBF546 /* SceneCoordinatorType.swift */,
 				EEE23509282B95F300FBF546 /* SceneTransitionStyle.swift */,
 				EEE2350B282B966E00FBF546 /* SceneTransitionError.swift */,
+				EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */,
 			);
 			path = SceneCoordinator;
 			sourceTree = "<group>";
@@ -415,9 +421,11 @@
 			files = (
 				EE3FA4992817EF01001C55CE /* ImageURL.swift in Sources */,
 				EE3FA4972817D62E001C55CE /* ImageTableViewCell.swift in Sources */,
+				EEE23510282BA16200FBF546 /* SceneCoordinator.swift in Sources */,
 				EEE2350C282B966E00FBF546 /* SceneTransitionError.swift in Sources */,
 				EE3FA4952817CD1D001C55CE /* TextTableViewCell.swift in Sources */,
 				EE3FA49B2817F7DD001C55CE /* ViewWillAppear+Rx.swift in Sources */,
+				EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */,
 				EEE2350A282B95F300FBF546 /* SceneTransitionStyle.swift in Sources */,
 				EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */,
 				EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */,

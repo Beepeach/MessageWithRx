@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class MessageRoomViewModel {
+final class MessageRoomViewModel: CommonViewModel {
     // MARK: Inputs
     let viewWillAppearSubject = PublishSubject<Void>()
     
@@ -20,7 +20,7 @@ final class MessageRoomViewModel {
     let messageService: MessageService
     
     // MARK: Init
-    init(messageService: MessageService) {
+    init(messageService: MessageService, sceneCoordinator: SceneCoordinatorType) {
         self.messageService = messageService
         
         let initMessage = viewWillAppearSubject
@@ -28,5 +28,7 @@ final class MessageRoomViewModel {
             .asDriver(onErrorJustReturn: [])
         
         messages = initMessage
+        
+        super.init(sceneCoordinator: sceneCoordinator)
     }
 }
