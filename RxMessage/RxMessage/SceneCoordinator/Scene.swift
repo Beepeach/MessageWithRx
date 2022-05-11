@@ -17,8 +17,8 @@ extension Scene {
     func instantiate() -> UIViewController {
         switch self {
         case .messageRoom(let messageRoomViewModel):
-            // var messageRoomVC = MessageRoomViewController(viewModel: <#T##MessageRoomViewModel#>)
-            // messageRoomVC.bind(viewModel: messageRoomViewModel)
+             var messageRoomVC = MessageRoomViewController()
+             messageRoomVC.bind(viewModel: messageRoomViewModel)
             
             return UIViewController()
         }

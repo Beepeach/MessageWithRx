@@ -12,63 +12,24 @@ import SnapKit
 import Then
 import Action
 
-class MessageRoomViewController: UIViewController {
+class MessageRoomViewController: UIViewController, ViewModelBindableType {
+    
     // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
-    private let viewModel: MessageRoomViewModel
     
     private let zoomAction: CocoaAction = Action {
         print("Zoom!!")
         return Observable.empty()
     }
+    private var messageTableView: UITableView = MessageRoomViewController.makeMessageTableView()
+    
     
     // MARK: Properties
-    var messageTableView: UITableView = UITableView().then {
-        $0.backgroundColor = .systemTeal
-        
-        $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
-        $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
-        
-        $0.separatorStyle = .none
-    }
+    var viewModel: MessageRoomViewModel!
     
-    // MARK: Initializer
-    init(viewModel: MessageRoomViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
     
-    required init?(coder: NSCoder) {
-        self.viewModel = MessageRoomViewModel(messageService: DummyMessageSender(), sceneCoordinator: SceneCoordinator(window: UIWindow()))
-        super.init(coder: coder)
-    }
-    
-    // MARK: VCLifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-        bindMessageTableView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        messageTableView.separatorStyle = .none
-    }
-    
-    private func setupUI() {
-        setupMessageTableViewUI()
-    }
-    
-    private func setupMessageTableViewUI() {
-        view.addSubview(messageTableView)
-        
-        messageTableView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
-        }
-    }
-    
-    private func bindMessageTableView() {
+    // MARK: Binding
+    func bindViewModel() {
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppearSubject)
             .disposed(by: bag)
@@ -95,7 +56,7 @@ class MessageRoomViewController: UIViewController {
                     
                     cell.zoomInButton.rx
                         .bind(to: self.zoomAction) { _ in }
-                        
+                    
                     return cell
                 }
             }.disposed(by: bag)
@@ -111,28 +72,67 @@ class MessageRoomViewController: UIViewController {
         
         return UIImage(data: data)
     }
+    
+    
+    // MARK: VCLifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        messageTableView.separatorStyle = .none
+    }
 }
 
+
+extension MessageRoomViewController {
+    class func makeMessageTableView() -> UITableView {
+        let tableView = UITableView().then {
+            $0.backgroundColor = .systemTeal
+            
+            $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
+            $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
+            
+            $0.separatorStyle = .none
+        }
+        
+        return tableView
+    }
+    
+    private func setupUI() {
+        setupMessageTableViewUI()
+    }
+    
+    private func setupMessageTableViewUI() {
+        view.addSubview(messageTableView)
+        
+        messageTableView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+    }
+}
 
 // MARK: - Previews
 /*
-#if DEBUG
-import SwiftUI
-
-struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        let viewModel = MessageRoomViewModel(messageService: DummyMessageSender(), sceneCoordinator: SceneCoordinator(window: <#T##UIWindow#>))
-        return MessageRoomViewController(viewModel: viewModel)
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-}
-
-struct MessageRoomPreviewProvider: PreviewProvider {
-    static var previews: some View {
-        MessageRoomVCRepresentable()
-    }
-}
-#endif
-*/
+ #if DEBUG
+ import SwiftUI
+ 
+ struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
+ func makeUIViewController(context: Context) -> some UIViewController {
+ let viewModel = MessageRoomViewModel(messageService: DummyMessageSender(), sceneCoordinator: SceneCoordinator(window: <#T##UIWindow#>))
+ return MessageRoomViewController(viewModel: viewModel)
+ }
+ 
+ func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+ }
+ }
+ 
+ struct MessageRoomPreviewProvider: PreviewProvider {
+ static var previews: some View {
+ MessageRoomVCRepresentable()
+ }
+ }
+ #endif
+ */
