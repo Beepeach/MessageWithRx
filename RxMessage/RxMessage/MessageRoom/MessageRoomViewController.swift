@@ -17,6 +17,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
     // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
     private var messageTableView: UITableView = MessageRoomViewController.makeMessageTableView()
+    private let inputField: UITextField = MessageRoomViewController.makeInputField()
     
     
     // MARK: Properties
@@ -26,7 +27,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
     // MARK: Binding
     func bindViewModel() {
         guard let viewModel = viewModel else { return }
-
+        
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppearSubject)
             .disposed(by: bag)
@@ -49,7 +50,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                         return ImageTableViewCell()
                     }
                     cell.messageImageView.image = self.getImage(from: message.body)
-        
+                    
                     return cell
                 }
             }.disposed(by: bag)
@@ -89,8 +90,8 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
 
 
 extension MessageRoomViewController {
-    class func makeMessageTableView() -> UITableView {
-        let tableView = UITableView().then {            
+    static func makeMessageTableView() -> UITableView {
+        let tableView = UITableView().then {
             $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
             $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
             
@@ -101,6 +102,7 @@ extension MessageRoomViewController {
     }
     
     private func setupUI() {
+        setupInputField()
         setupMessageTableViewUI()
     }
     
@@ -108,7 +110,28 @@ extension MessageRoomViewController {
         view.addSubview(messageTableView)
         
         messageTableView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            
+            $0.bottom.equalTo(inputField.snp.top)
+        }
+    }
+    
+    static func makeInputField() -> UITextField {
+        let textField = UITextField().then {
+            $0.borderStyle = .line
+            $0.textColor = .black
+            $0.backgroundColor = .brown
+        }
+        
+        return textField
+    }
+    
+    private func setupInputField() {
+        view.addSubview(inputField)
+        
+        inputField.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }
