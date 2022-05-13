@@ -43,6 +43,7 @@ class SceneCoordinator: SceneCoordinatorType {
                 break
             }
             
+            // dispose를 왜 안하지..? 이 상태로 놔둬 메모리 누수가 없나??
             _ = navigationController.rx.didShow
                 .map { _ in }
                 .bind(to: subject)
@@ -52,6 +53,8 @@ class SceneCoordinator: SceneCoordinatorType {
             subject.onCompleted()
             
         case .modal(let animated):
+            // fullScreen을 하지 않으면 이전 VC를 어떻게 저장해야할까?
+            viewController.modalPresentationStyle = .fullScreen
             currentViewController.present(viewController, animated: animated) {
                 subject.onCompleted()
             }

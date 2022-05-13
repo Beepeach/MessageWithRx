@@ -20,6 +20,7 @@
 		EE5E969F2817B9EB00D78938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE5E969E2817B9EB00D78938 /* Assets.xcassets */; };
 		EE5E96A22817B9EB00D78938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5E96A02817B9EB00D78938 /* LaunchScreen.storyboard */; };
 		EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */; };
+		EE71F9F1282CF65F00E07F0F /* ViewWillDisappear+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71F9F0282CF65F00E07F0F /* ViewWillDisappear+Rx.swift */; };
 		EE72A6B0281A1F91008777D6 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6AF281A1F91008777D6 /* MessageService.swift */; };
 		EE72A6B2281A28E1008777D6 /* MessageRoomViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B1281A28E1008777D6 /* MessageRoomViewModelTests.swift */; };
 		EE72A6B4281A28F4008777D6 /* MessageRoomViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B3281A28F4008777D6 /* MessageRoomViewControllerTests.swift */; };
@@ -32,6 +33,8 @@
 		EEE2350C282B966E00FBF546 /* SceneTransitionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350B282B966E00FBF546 /* SceneTransitionError.swift */; };
 		EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */; };
 		EEE23510282BA16200FBF546 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */; };
+		EEE23514282C98D800FBF546 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23513282C98D800FBF546 /* DetailImageViewController.swift */; };
+		EEE23516282C9C4700FBF546 /* DetailImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,7 @@
 		EE5E96A12817B9EB00D78938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE5E96A32817B9EB00D78938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewController.swift; sourceTree = "<group>"; };
+		EE71F9F0282CF65F00E07F0F /* ViewWillDisappear+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWillDisappear+Rx.swift"; sourceTree = "<group>"; };
 		EE72A6AF281A1F91008777D6 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		EE72A6B1281A28E1008777D6 /* MessageRoomViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewModelTests.swift; sourceTree = "<group>"; };
 		EE72A6B3281A28F4008777D6 /* MessageRoomViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewControllerTests.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 		EEE2350B282B966E00FBF546 /* SceneTransitionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransitionError.swift; sourceTree = "<group>"; };
 		EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		EEE23513282C98D800FBF546 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
+		EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +189,7 @@
 			children = (
 				EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */,
 				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
+				EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 			children = (
 				EEE23505282B930D00FBF546 /* ViewModelBindableType.swift */,
 				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
+				EEE23513282C98D800FBF546 /* DetailImageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3FA49A2817F7DD001C55CE /* ViewWillAppear+Rx.swift */,
+				EE71F9F0282CF65F00E07F0F /* ViewWillDisappear+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -224,8 +233,8 @@
 		EEE23502282B913E00FBF546 /* SceneCoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				EEE23503282B915700FBF546 /* Scene.swift */,
 				EEE23507282B947400FBF546 /* SceneCoordinatorType.swift */,
+				EEE23503282B915700FBF546 /* Scene.swift */,
 				EEE23509282B95F300FBF546 /* SceneTransitionStyle.swift */,
 				EEE2350B282B966E00FBF546 /* SceneTransitionError.swift */,
 				EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */,
@@ -426,15 +435,18 @@
 				EE3FA4952817CD1D001C55CE /* TextTableViewCell.swift in Sources */,
 				EE3FA49B2817F7DD001C55CE /* ViewWillAppear+Rx.swift in Sources */,
 				EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */,
+				EEE23514282C98D800FBF546 /* DetailImageViewController.swift in Sources */,
 				EEE2350A282B95F300FBF546 /* SceneTransitionStyle.swift in Sources */,
 				EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */,
 				EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */,
+				EEE23516282C9C4700FBF546 /* DetailImageViewModel.swift in Sources */,
 				EE72A6B0281A1F91008777D6 /* MessageService.swift in Sources */,
 				EEB7CF8A2819103400D8FE72 /* MessageRoomViewModel.swift in Sources */,
 				EE3FA4932817BF11001C55CE /* Message.swift in Sources */,
 				EE5E96982817B9EA00D78938 /* SceneDelegate.swift in Sources */,
 				EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */,
 				EEE23508282B947400FBF546 /* SceneCoordinatorType.swift in Sources */,
+				EE71F9F1282CF65F00E07F0F /* ViewWillDisappear+Rx.swift in Sources */,
 				EEE23504282B915700FBF546 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

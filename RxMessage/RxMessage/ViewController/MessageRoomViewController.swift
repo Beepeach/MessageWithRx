@@ -16,20 +16,17 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
     
     // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
-    
-    private let zoomAction: CocoaAction = Action {
-        print("Zoom!!")
-        return Observable.empty()
-    }
     private var messageTableView: UITableView = MessageRoomViewController.makeMessageTableView()
     
     
     // MARK: Properties
-    var viewModel: MessageRoomViewModel!
+    var viewModel: MessageRoomViewModel?
     
     
     // MARK: Binding
     func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppearSubject)
             .disposed(by: bag)
@@ -52,14 +49,18 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                         return ImageTableViewCell()
                     }
                     cell.messageImageView.image = self.getImage(from: message.body)
-                    
-                    
-                    cell.zoomInButton.rx
-                        .bind(to: self.zoomAction) { _ in }
-                    
+        
                     return cell
                 }
             }.disposed(by: bag)
+        
+        // 여기서 바로 이미지를 가져올 수는 없을까??
+        
+        
+        messageTableView.rx.modelSelected(Message.self)
+            .compactMap { self.getImage(from: $0.body) }
+            .bind(to: viewModel.detailImageAction.inputs)
+            .disposed(by: bag)
     }
     
     private func getImage(from url: String) -> UIImage? {
@@ -89,9 +90,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
 
 extension MessageRoomViewController {
     class func makeMessageTableView() -> UITableView {
-        let tableView = UITableView().then {
-            $0.backgroundColor = .systemTeal
-            
+        let tableView = UITableView().then {            
             $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
             $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
             
@@ -114,25 +113,32 @@ extension MessageRoomViewController {
     }
 }
 
+
+
 // MARK: - Previews
-/*
- #if DEBUG
- import SwiftUI
- 
- struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
- func makeUIViewController(context: Context) -> some UIViewController {
- let viewModel = MessageRoomViewModel(messageService: DummyMessageSender(), sceneCoordinator: SceneCoordinator(window: <#T##UIWindow#>))
- return MessageRoomViewController(viewModel: viewModel)
- }
- 
- func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
- }
- }
- 
- struct MessageRoomPreviewProvider: PreviewProvider {
- static var previews: some View {
- MessageRoomVCRepresentable()
- }
- }
- #endif
- */
+
+#if DEBUG
+import SwiftUI
+
+struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let messageService = DummyMessageSender()
+        let sceneCoordinator = SceneCoordinator(window: window)
+        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator)
+        let messageRoomScene = Scene.messageRoom(messageRoomViewModel)
+        
+        return messageRoomScene.instantiate()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    }
+}
+
+struct MessageRoomPreviewProvider: PreviewProvider {
+    static var previews: some View {
+        MessageRoomVCRepresentable()
+    }
+}
+#endif
+

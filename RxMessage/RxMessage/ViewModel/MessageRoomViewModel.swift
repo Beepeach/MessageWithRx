@@ -35,4 +35,18 @@ final class MessageRoomViewModel: CommonViewModel {
     }
     
     // MARK: Action
+    lazy var detailImageAction: Action<UIImage, Void> = {
+        Action { image in
+            let detailImageViewModel = DetailImageViewModel(image: image, sceneCoordinator: self.sceneCoordinator)
+            
+            let detailImageScene = Scene.detailImage(detailImageViewModel)
+            
+            return self.sceneCoordinator.transition(
+                to: detailImageScene,
+                using: .modal(animated: true)
+            )
+            .asObservable()
+            .map { _ in }
+        }
+    }()
 }

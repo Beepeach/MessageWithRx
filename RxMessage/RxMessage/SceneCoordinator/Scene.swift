@@ -10,6 +10,7 @@ import UIKit
 
 enum Scene {
     case messageRoom(MessageRoomViewModel)
+    case detailImage(DetailImageViewModel)
 }
 
 
@@ -20,7 +21,13 @@ extension Scene {
              var messageRoomVC = MessageRoomViewController()
              messageRoomVC.bind(viewModel: messageRoomViewModel)
             
-            return UIViewController()
+            return messageRoomVC
+            
+        case .detailImage(let detailImageViewModel):
+            var detailImageVC = DetailImageViewController()
+            detailImageVC.bind(viewModel: detailImageViewModel)
+            
+            return detailImageVC
         }
     }
 }

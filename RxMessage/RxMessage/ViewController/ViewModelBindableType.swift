@@ -11,7 +11,7 @@ import UIKit
 protocol ViewModelBindableType {
     associatedtype ViewModelType
     
-    var viewModel: ViewModelType! { get set }
+    var viewModel: ViewModelType? { get set }
     
     func bindViewModel()
 }

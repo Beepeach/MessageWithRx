@@ -23,8 +23,6 @@ class ImageTableViewCell: UITableViewCell {
         $0.contentMode = .scaleAspectFill
     }
     
-    var zoomInButton: UIButton = UIButton()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -39,11 +37,9 @@ class ImageTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         contentView.addSubview(containerView)
         containerView.addSubview(messageImageView)
-        containerView.addSubview(zoomInButton)
       
         setupContainerView()
         setupMessageImageView()
-        setupZoomInButton()
     }
     
     private func setupContainerView() {
@@ -59,12 +55,6 @@ class ImageTableViewCell: UITableViewCell {
     private func setupMessageImageView() {
         messageImageView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
-        }
-    }
-    
-    private func setupZoomInButton() {
-        zoomInButton.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
     }
 }
