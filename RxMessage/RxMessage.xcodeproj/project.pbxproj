@@ -125,6 +125,61 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EE3785C9282DF89900F2C2B8 /* MessageRoom */ = {
+			isa = PBXGroup;
+			children = (
+				EE3785CA282DF8C300F2C2B8 /* View */,
+				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
+				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
+			);
+			path = MessageRoom;
+			sourceTree = "<group>";
+		};
+		EE3785CA282DF8C300F2C2B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3FA4962817D62E001C55CE /* ImageTableViewCell.swift */,
+				EE3FA4942817CD1D001C55CE /* TextTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3785CB282DF8FB00F2C2B8 /* DetailImage */ = {
+			isa = PBXGroup;
+			children = (
+				EEE23513282C98D800FBF546 /* DetailImageViewController.swift */,
+				EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */,
+			);
+			path = DetailImage;
+			sourceTree = "<group>";
+		};
+		EE3785CC282DF92C00F2C2B8 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				EE5E96A02817B9EB00D78938 /* LaunchScreen.storyboard */,
+				EE5E969B2817B9EA00D78938 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		EE3785CE282DFAD800F2C2B8 /* AppSceneDeleagte */ = {
+			isa = PBXGroup;
+			children = (
+				EE5E96952817B9EA00D78938 /* AppDelegate.swift */,
+				EE5E96972817B9EA00D78938 /* SceneDelegate.swift */,
+			);
+			path = AppSceneDeleagte;
+			sourceTree = "<group>";
+		};
+		EE3785CF282DFE8D00F2C2B8 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				EE5E96A32817B9EB00D78938 /* Info.plist */,
+				EE5E969E2817B9EB00D78938 /* Assets.xcassets */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
 		EE3FA4912817BF07001C55CE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,19 +212,17 @@
 		EE5E96942817B9EA00D78938 /* RxMessage */ = {
 			isa = PBXGroup;
 			children = (
+				EE3785CE282DFAD800F2C2B8 /* AppSceneDeleagte */,
+				EE3785CF282DFE8D00F2C2B8 /* Asset */,
+				EE3785CC282DF92C00F2C2B8 /* Storyboard */,
 				EEE23502282B913E00FBF546 /* SceneCoordinator */,
 				EEE23501282B90B600FBF546 /* Extension */,
-				EEE23500282B90A700FBF546 /* Service */,
-				EEE234FF282B909600FBF546 /* View */,
-				EEE234FE282B908A00FBF546 /* ViewController */,
-				EEE234FD282B907F00FBF546 /* ViewModel */,
 				EE3FA4912817BF07001C55CE /* Model */,
-				EE5E96952817B9EA00D78938 /* AppDelegate.swift */,
-				EE5E96972817B9EA00D78938 /* SceneDelegate.swift */,
-				EE5E969B2817B9EA00D78938 /* Main.storyboard */,
-				EE5E96A02817B9EB00D78938 /* LaunchScreen.storyboard */,
-				EE5E969E2817B9EB00D78938 /* Assets.xcassets */,
-				EE5E96A32817B9EB00D78938 /* Info.plist */,
+				EEE234FE282B908A00FBF546 /* CommonViewController */,
+				EEE234FD282B907F00FBF546 /* CommonViewModel */,
+				EEE23500282B90A700FBF546 /* Service */,
+				EE3785C9282DF89900F2C2B8 /* MessageRoom */,
+				EE3785CB282DF8FB00F2C2B8 /* DetailImage */,
 			);
 			path = RxMessage;
 			sourceTree = "<group>";
@@ -184,33 +237,20 @@
 			path = RxMessageTests;
 			sourceTree = "<group>";
 		};
-		EEE234FD282B907F00FBF546 /* ViewModel */ = {
+		EEE234FD282B907F00FBF546 /* CommonViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				EEE2350D282B9D2200FBF546 /* CommonViewModel.swift */,
-				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
-				EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */,
 			);
-			path = ViewModel;
+			path = CommonViewModel;
 			sourceTree = "<group>";
 		};
-		EEE234FE282B908A00FBF546 /* ViewController */ = {
+		EEE234FE282B908A00FBF546 /* CommonViewController */ = {
 			isa = PBXGroup;
 			children = (
 				EEE23505282B930D00FBF546 /* ViewModelBindableType.swift */,
-				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
-				EEE23513282C98D800FBF546 /* DetailImageViewController.swift */,
 			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		EEE234FF282B909600FBF546 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EE3FA4942817CD1D001C55CE /* TextTableViewCell.swift */,
-				EE3FA4962817D62E001C55CE /* ImageTableViewCell.swift */,
-			);
-			path = View;
+			path = CommonViewController;
 			sourceTree = "<group>";
 		};
 		EEE23500282B90A700FBF546 /* Service */ = {
@@ -615,7 +655,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G5RH9MF273;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RxMessage/Info.plist;
+				INFOPLIST_FILE = RxMessage/Asset/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -644,7 +684,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G5RH9MF273;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RxMessage/Info.plist;
+				INFOPLIST_FILE = RxMessage/Asset/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
