@@ -8,6 +8,7 @@ def shared_pods
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Action'
+  pod 'Starscream'
 end
 
 
