@@ -35,6 +35,8 @@
 		EEE23510282BA16200FBF546 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */; };
 		EEE23514282C98D800FBF546 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23513282C98D800FBF546 /* DetailImageViewController.swift */; };
 		EEE23516282C9C4700FBF546 /* DetailImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */; };
+		EEEF84632835D087002BDF52 /* MyTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF84622835D087002BDF52 /* MyTextTableViewCell.swift */; };
+		EEEF84652835D4D7002BDF52 /* YourTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF84642835D4D7002BDF52 /* YourTextTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		EEE23513282C98D800FBF546 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewModel.swift; sourceTree = "<group>"; };
+		EEEF84622835D087002BDF52 /* MyTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextTableViewCell.swift; sourceTree = "<group>"; };
+		EEEF84642835D4D7002BDF52 /* YourTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTextTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 			children = (
 				EE3FA4962817D62E001C55CE /* ImageTableViewCell.swift */,
 				EE3FA4942817CD1D001C55CE /* TextTableViewCell.swift */,
+				EEEF84622835D087002BDF52 /* MyTextTableViewCell.swift */,
+				EEEF84642835D4D7002BDF52 /* YourTextTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 				EE3FA49B2817F7DD001C55CE /* ViewWillAppear+Rx.swift in Sources */,
 				EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */,
 				EEE23514282C98D800FBF546 /* DetailImageViewController.swift in Sources */,
+				EEEF84632835D087002BDF52 /* MyTextTableViewCell.swift in Sources */,
 				EEE2350A282B95F300FBF546 /* SceneTransitionStyle.swift in Sources */,
 				EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */,
 				EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */,
@@ -484,6 +491,7 @@
 				EEB7CF8A2819103400D8FE72 /* MessageRoomViewModel.swift in Sources */,
 				EE3FA4932817BF11001C55CE /* Message.swift in Sources */,
 				EE5E96982817B9EA00D78938 /* SceneDelegate.swift in Sources */,
+				EEEF84652835D4D7002BDF52 /* YourTextTableViewCell.swift in Sources */,
 				EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */,
 				EEE23508282B947400FBF546 /* SceneCoordinatorType.swift in Sources */,
 				EE71F9F1282CF65F00E07F0F /* ViewWillDisappear+Rx.swift in Sources */,

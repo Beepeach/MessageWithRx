@@ -41,17 +41,42 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                 
                 switch message.type {
                 case .text:
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell.identifier, for: indexPath) as? TextTableViewCell else {
-                        return TextTableViewCell()
+                    if message.who == "me" {
+                        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTextTableViewCell.identifier, for: indexPath) as? MyTextTableViewCell else {
+                            return MyTextTableViewCell()
+                        }
+                        
+                        cell.textMessageLabel.text = message.body
+                        
+                        return cell
+                    } else {
+                        guard let cell = tableView.dequeueReusableCell(withIdentifier: YourTextTableViewCell.identifier, for: indexPath) as? YourTextTableViewCell else {
+                            return YourTextTableViewCell()
+                        }
+                        
+                        cell.textMessageLabel.text = message.body
+                        
+                        return cell
                     }
                     
-                    cell.textMessageLabel.text = message.body
-                    
-                    return cell
                 case .image:
                     guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier, for: indexPath) as? ImageTableViewCell else {
                         return ImageTableViewCell()
                     }
+                    
+                    if message.who != "me" {
+                        cell.containerView.backgroundColor = .systemYellow
+                        cell.containerView.snp.removeConstraints()
+                        cell.containerView.snp.makeConstraints {
+                            $0.top.greaterThanOrEqualToSuperview().offset(8)
+                            $0.bottom.equalToSuperview().offset(-8)
+                            $0.leading.equalToSuperview().offset(8)
+                            $0.trailing.lessThanOrEqualToSuperview().offset(-8)
+                            $0.height.equalTo(200)
+                            $0.width.equalTo(300)
+                        }
+                    }
+                    
                     cell.messageImageView.image = self.getImage(from: message.body)
                     
                     return cell
@@ -142,13 +167,14 @@ extension MessageRoomViewController {
         
         inputField.snp.makeConstraints {
             $0.centerY.equalTo(sendButton)
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalTo(sendButton.snp.leading).offset(-10)
         }
     }
     static func makeMessageTableView() -> UITableView {
         let tableView = UITableView().then {
-            $0.register(TextTableViewCell.classForCoder(), forCellReuseIdentifier: TextTableViewCell.identifier)
+            $0.register(MyTextTableViewCell.classForCoder(), forCellReuseIdentifier: MyTextTableViewCell.identifier)
+            $0.register(YourTextTableViewCell.classForCoder(), forCellReuseIdentifier: YourTextTableViewCell.identifier)
             $0.register(ImageTableViewCell.classForCoder(), forCellReuseIdentifier: ImageTableViewCell.identifier)
             
             $0.separatorStyle = .none
