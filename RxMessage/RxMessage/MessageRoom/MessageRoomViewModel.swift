@@ -9,10 +9,15 @@ import UIKit.UIImage
 import RxSwift
 import RxCocoa
 import Action
+import Network
 
 final class MessageRoomViewModel: CommonViewModel {
+    // MARK: Variable
+    let previousMessages: BehaviorRelay<[Message]>
+    
     // MARK: Inputs
     let viewWillAppearSubject: PublishSubject<Void>
+    let sendMessageSubject: PublishSubject<String>
     
     // MARK: Outputs
     var messages: Driver<[Message]>
@@ -21,18 +26,34 @@ final class MessageRoomViewModel: CommonViewModel {
     let messageService: MessageService
 
     // MARK: Init
-    init(messageService: MessageService, sceneCoordinator: SceneCoordinatorType) {
-        self.viewWillAppearSubject = PublishSubject<Void>() 
+    init(messageService: MessageService, sceneCoordinator: SceneCoordinatorType, previousMessages: BehaviorRelay<[Message]>) {
         self.messageService = messageService
+        self.viewWillAppearSubject = PublishSubject<Void>()
+        self.sendMessageSubject = PublishSubject<String>()
+        self.previousMessages = previousMessages
         
         let initMessage = viewWillAppearSubject
-            .flatMap { messageService.sendMessage() }
-            .asDriver(onErrorJustReturn: [])
+            .flatMap { previousMessages }
         
-        messages = initMessage
+        let sendMessage = sendMessageSubject.map {
+            Message(type: .text, who: "me", body: $0)
+        }
         
+        // TODO: 이름 바꾸기
+        let receiveMessage = Observable.merge(messageService.receiveMessage(), sendMessage)
+            .scan(into: previousMessages.value) { previous, message in
+                previous.append(message)
+        }
+        
+        
+        let messages = Observable.merge(initMessage, receiveMessage)
+        
+        self.messages = messages.asDriver(onErrorJustReturn: [])
+        
+
         super.init(sceneCoordinator: sceneCoordinator)
     }
+    
     
     // MARK: Action
     lazy var detailImageAction: Action<UIImage, Void> = {
@@ -47,6 +68,14 @@ final class MessageRoomViewModel: CommonViewModel {
             )
             .asObservable()
             .map { _ in }
+        }
+    }()
+    
+    lazy var sendTextAction: Action<String, Void> = {
+        Action { text in
+            let sendMessage = self.messageService.sendMessage(with: text)
+            
+            return sendMessage
         }
     }()
 }

@@ -35,7 +35,31 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
             .bind(to: viewModel.viewWillAppearSubject)
             .disposed(by: bag)
         
+        sendButton.rx.tap.asObservable()
+            .withUnretained(self)
+            .compactMap { $0.0.inputField.text }
+            .filter { $0.count > 0 }
+            .bind(to: viewModel.sendTextAction.inputs)
+            .disposed(by: bag)
+        
+        sendButton.rx.tap
+            .withUnretained(self)
+            .compactMap { $0.0.inputField.text }
+            .filter { $0.count > 0 }
+            .bind(to: viewModel.sendMessageSubject)
+            .disposed(by: bag)
+        
+        sendButton.rx.tap
+            .withUnretained(self)
+            .bind {
+                $0.0.inputField.text = nil
+            }
+            .disposed(by: bag)
+                
         viewModel.messages
+            .do(onNext: { [weak self] _ in
+                self?.messageTableView.setContentOffset(CGPoint(x: 0, y : CGFloat.greatestFiniteMagnitude), animated: true)
+            })
             .drive(messageTableView.rx.items) { tableView, index, message in
                 let indexPath: IndexPath = IndexPath(row: index, section: 0)
                 
@@ -84,18 +108,15 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: bag)
         
         // 여기서 바로 이미지를 가져올 수는 없을까??
-        
-        
         messageTableView.rx.modelSelected(Message.self)
             .compactMap { self.getImage(from: $0.body) }
             .bind(to: viewModel.detailImageAction.inputs)
             .disposed(by: bag)
         
-        //        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
-        //            .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
-        //            .map { $0.height }
-        
-        
+ 
+//             NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+//                    .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
+//                    .map { $0.height }
     }
     
     private func getImage(from url: String) -> UIImage? {
@@ -122,7 +143,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
     }
 }
 
-
+// MARK: - UI
 extension MessageRoomViewController {
     private func setupUI() {
         setupInputContainerView()
@@ -221,9 +242,14 @@ import SwiftUI
 struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let messageService = DummyMessageSender()
+        let messageService = EchoMessageService(webSocketManager: WebSocketManager())
         let sceneCoordinator = SceneCoordinator(window: window)
-        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator)
+        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator, previousMessages: BehaviorRelay(value:  [
+            Message(type: .text, who: "me", body: "Hello RxSwift!!"),
+            Message(type: .image, who: "me", body: imageURL),
+            Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood"),
+            Message(type: .text, who: "you", body: "Hello")
+        ]))
         let messageRoomScene = Scene.messageRoom(messageRoomViewModel)
         
         return messageRoomScene.instantiate()

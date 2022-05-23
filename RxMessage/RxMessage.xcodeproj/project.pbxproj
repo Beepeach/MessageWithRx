@@ -37,6 +37,9 @@
 		EEE23516282C9C4700FBF546 /* DetailImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */; };
 		EEEF84632835D087002BDF52 /* MyTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF84622835D087002BDF52 /* MyTextTableViewCell.swift */; };
 		EEEF84652835D4D7002BDF52 /* YourTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF84642835D4D7002BDF52 /* YourTextTableViewCell.swift */; };
+		EEEF846A28361B8A002BDF52 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846928361B8A002BDF52 /* WebSocketManager.swift */; };
+		EEEF846C28361B9A002BDF52 /* WebSocketDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846B28361B9A002BDF52 /* WebSocketDelegateProxy.swift */; };
+		EEEF846E28362BE3002BDF52 /* WebSocket+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846D28362BE3002BDF52 /* WebSocket+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		EEE23515282C9C4700FBF546 /* DetailImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewModel.swift; sourceTree = "<group>"; };
 		EEEF84622835D087002BDF52 /* MyTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextTableViewCell.swift; sourceTree = "<group>"; };
 		EEEF84642835D4D7002BDF52 /* YourTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTextTableViewCell.swift; sourceTree = "<group>"; };
+		EEEF846928361B8A002BDF52 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		EEEF846B28361B9A002BDF52 /* WebSocketDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketDelegateProxy.swift; sourceTree = "<group>"; };
+		EEEF846D28362BE3002BDF52 /* WebSocket+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocket+Rx.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,7 @@
 		EE3785C9282DF89900F2C2B8 /* MessageRoom */ = {
 			isa = PBXGroup;
 			children = (
+				EEE23500282B90A700FBF546 /* Service */,
 				EE3785CA282DF8C300F2C2B8 /* View */,
 				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
 				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
@@ -218,6 +225,7 @@
 		EE5E96942817B9EA00D78938 /* RxMessage */ = {
 			isa = PBXGroup;
 			children = (
+				EEEF846828361B6A002BDF52 /* WebSocketManager */,
 				EE3785CE282DFAD800F2C2B8 /* AppSceneDeleagte */,
 				EE3785CF282DFE8D00F2C2B8 /* Asset */,
 				EE3785CC282DF92C00F2C2B8 /* Storyboard */,
@@ -226,7 +234,6 @@
 				EE3FA4912817BF07001C55CE /* Model */,
 				EEE234FE282B908A00FBF546 /* CommonViewController */,
 				EEE234FD282B907F00FBF546 /* CommonViewModel */,
-				EEE23500282B90A700FBF546 /* Service */,
 				EE3785C9282DF89900F2C2B8 /* MessageRoom */,
 				EE3785CB282DF8FB00F2C2B8 /* DetailImage */,
 			);
@@ -286,6 +293,16 @@
 				EEE2350F282BA16200FBF546 /* SceneCoordinator.swift */,
 			);
 			path = SceneCoordinator;
+			sourceTree = "<group>";
+		};
+		EEEF846828361B6A002BDF52 /* WebSocketManager */ = {
+			isa = PBXGroup;
+			children = (
+				EEEF846928361B8A002BDF52 /* WebSocketManager.swift */,
+				EEEF846B28361B9A002BDF52 /* WebSocketDelegateProxy.swift */,
+				EEEF846D28362BE3002BDF52 /* WebSocket+Rx.swift */,
+			);
+			path = WebSocketManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -478,6 +495,7 @@
 				EE3FA4972817D62E001C55CE /* ImageTableViewCell.swift in Sources */,
 				EEE23510282BA16200FBF546 /* SceneCoordinator.swift in Sources */,
 				EEE2350C282B966E00FBF546 /* SceneTransitionError.swift in Sources */,
+				EEEF846E28362BE3002BDF52 /* WebSocket+Rx.swift in Sources */,
 				EE3FA4952817CD1D001C55CE /* TextTableViewCell.swift in Sources */,
 				EE3FA49B2817F7DD001C55CE /* ViewWillAppear+Rx.swift in Sources */,
 				EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */,
@@ -493,8 +511,10 @@
 				EE5E96982817B9EA00D78938 /* SceneDelegate.swift in Sources */,
 				EEEF84652835D4D7002BDF52 /* YourTextTableViewCell.swift in Sources */,
 				EE5E96AA2817BBD000D78938 /* MessageRoomViewController.swift in Sources */,
+				EEEF846C28361B9A002BDF52 /* WebSocketDelegateProxy.swift in Sources */,
 				EEE23508282B947400FBF546 /* SceneCoordinatorType.swift in Sources */,
 				EE71F9F1282CF65F00E07F0F /* ViewWillDisappear+Rx.swift in Sources */,
+				EEEF846A28361B8A002BDF52 /* WebSocketManager.swift in Sources */,
 				EEE23504282B915700FBF546 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
