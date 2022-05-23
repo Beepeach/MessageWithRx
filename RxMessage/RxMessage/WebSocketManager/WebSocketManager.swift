@@ -18,7 +18,9 @@ class WebSocketManager {
     }
     
     private func setupWebSocket() {
-        let url = URL(string: "wss://ws.postman-echo.com/raw")!
+        guard let url = URL(string: "wss://ws.postman-echo.com/raw") else {
+            return
+        }
         var request = URLRequest(url: url)
         request.timeoutInterval = 5
         
@@ -36,15 +38,4 @@ class WebSocketManager {
     func write(_ text: String) {
         socket.write(string: text)
     }
-//    
-//    func receive() {
-//        socket.rx.response.map { event -> String in
-//            switch event {
-//            case .text(let text):
-//                return text
-//            default:
-//                return ""
-//            }
-//        }
-//    }
 }

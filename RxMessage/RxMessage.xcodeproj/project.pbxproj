@@ -40,6 +40,7 @@
 		EEEF846A28361B8A002BDF52 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846928361B8A002BDF52 /* WebSocketManager.swift */; };
 		EEEF846C28361B9A002BDF52 /* WebSocketDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846B28361B9A002BDF52 /* WebSocketDelegateProxy.swift */; };
 		EEEF846E28362BE3002BDF52 /* WebSocket+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846D28362BE3002BDF52 /* WebSocket+Rx.swift */; };
+		EEEF8470283B737F002BDF52 /* MessageRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEF846F283B737F002BDF52 /* MessageRoom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		EEEF846928361B8A002BDF52 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		EEEF846B28361B9A002BDF52 /* WebSocketDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketDelegateProxy.swift; sourceTree = "<group>"; };
 		EEEF846D28362BE3002BDF52 /* WebSocket+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocket+Rx.swift"; sourceTree = "<group>"; };
+		EEEF846F283B737F002BDF52 /* MessageRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3FA4922817BF11001C55CE /* Message.swift */,
+				EEEF846F283B737F002BDF52 /* MessageRoom.swift */,
 				EE3FA4982817EF01001C55CE /* ImageURL.swift */,
 			);
 			path = Model;
@@ -505,6 +508,7 @@
 				EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */,
 				EE5E96962817B9EA00D78938 /* AppDelegate.swift in Sources */,
 				EEE23516282C9C4700FBF546 /* DetailImageViewModel.swift in Sources */,
+				EEEF8470283B737F002BDF52 /* MessageRoom.swift in Sources */,
 				EE72A6B0281A1F91008777D6 /* MessageService.swift in Sources */,
 				EEB7CF8A2819103400D8FE72 /* MessageRoomViewModel.swift in Sources */,
 				EE3FA4932817BF11001C55CE /* Message.swift in Sources */,

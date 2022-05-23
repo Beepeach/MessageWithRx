@@ -57,26 +57,6 @@ class EchoMessageService: MessageService {
                 }
             }
             .filter { $0.count > 0 }
-            .map { Message(type: .text, who: "you", body: $0) }
+            .map { Message(type: .text, who: "you", body: $0, date: Date()) }
     }
 }
-
-/*
-class DummyMessageSender: MessageService {
-    let dummyData = BehaviorRelay<[Message]>(value: [
-        Message(type: .text, who: "me", body: "Hello RxSwift!!"),
-        Message(type: .image, who: "me", body: imageURL),
-        Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood"),
-        Message(type: .text, who: "you", body: "Hello"),
-        Message(type: .text, who: "me", body: "안녕하세요?\n반가워요 전혀 Rx적이지 않네요?"),
-        Message(type: .text, who: "me", body: "Bad\nBad\nGoodGoodGood"),
-        Message(type: .image, who: "you", body: anotherImageURL),
-        Message(type: .text, who: "me", body: "HAHAHAH\nHUHUHUHUHU\nGoodGoodGood"),
-        Message(type: .text, who: "you", body: "Good\nGood\nGoodGoodGood")
-    ])
-    
-    func sendMessage() -> Observable<[Message]> {
-        return dummyData.asObservable()
-    }
-}
-*/

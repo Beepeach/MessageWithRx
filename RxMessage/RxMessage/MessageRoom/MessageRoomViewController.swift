@@ -20,7 +20,6 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
     private let inputContainerView: UIView = MessageRoomViewController.makeInputContainerView()
     private let inputField: UITextField = MessageRoomViewController.makeInputField()
     private let sendButton: UIButton = MessageRoomViewController.makeSendButton()
-
     
     
     // MARK: Properties
@@ -55,7 +54,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                 $0.0.inputField.text = nil
             }
             .disposed(by: bag)
-                
+        
         viewModel.messages
             .do(onNext: { [weak self] _ in
                 self?.messageTableView.setContentOffset(CGPoint(x: 0, y : CGFloat.greatestFiniteMagnitude), animated: true)
@@ -113,10 +112,28 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
             .bind(to: viewModel.detailImageAction.inputs)
             .disposed(by: bag)
         
- 
-//             NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
-//                    .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
-//                    .map { $0.height }
+        let keyboardHideNoti = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+            .map { _ -> CGFloat in 0 }
+        let keyboardShowNoti = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+            .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
+            .map { $0.height }
+        
+        Observable.merge(keyboardHideNoti, keyboardShowNoti)
+            .bind { height in
+                UIView.animate(withDuration: 0) {
+                    self.inputContainerView.snp.updateConstraints {
+                        $0.bottom.equalToSuperview().inset(height)
+                    }
+            
+                    // TableView도 함께 올라가는 모습으로 하려면 어떻게 하지..?
+                    self.messageTableView.snp.updateConstraints {
+                        $0.bottom.equalTo(self.inputContainerView.snp.top)
+                    }
+                    
+                    self.view.layoutIfNeeded()
+                }
+            }
+            .disposed(by: bag)
     }
     
     private func getImage(from url: String) -> UIImage? {
@@ -238,18 +255,14 @@ extension MessageRoomViewController {
 
 #if DEBUG
 import SwiftUI
+import RealmSwift
 
 struct MessageRoomVCRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         let window = UIWindow(frame: UIScreen.main.bounds)
         let messageService = EchoMessageService(webSocketManager: WebSocketManager())
         let sceneCoordinator = SceneCoordinator(window: window)
-        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator, previousMessages: BehaviorRelay(value:  [
-            Message(type: .text, who: "me", body: "Hello RxSwift!!"),
-            Message(type: .image, who: "me", body: imageURL),
-            Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood"),
-            Message(type: .text, who: "you", body: "Hello")
-        ]))
+        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator, realm: try! Realm())
         let messageRoomScene = Scene.messageRoom(messageRoomViewModel)
         
         return messageRoomScene.instantiate()

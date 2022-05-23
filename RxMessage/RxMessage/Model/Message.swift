@@ -6,16 +6,24 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Message {
-    let type: MessageType
-    let who: String
-    var body: String
+class Message: Object {
+    @Persisted var type: MessageType = .text
+    @Persisted var who: String = ""
+    @Persisted var body: String = ""
+    @Persisted var date: Date = Date()
     
-    enum MessageType {
+    enum MessageType:String, PersistableEnum {
         case text
         case image
     }
+    
+    convenience init(type: MessageType, who: String, body: String, date: Date) {
+        self.init()
+        self.type = type
+        self.who = who
+        self.body = body
+        self.date = date
+    }
 }
-
-

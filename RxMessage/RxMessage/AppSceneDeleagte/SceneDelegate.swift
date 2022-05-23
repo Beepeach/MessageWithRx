@@ -7,6 +7,7 @@
 
 import UIKit
 import RxRelay
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -20,12 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let messageService = EchoMessageService(webSocketManager: WebSocketManager())
         let sceneCoordinator = SceneCoordinator(window: window)
-        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator, previousMessages: BehaviorRelay(value:  [
-            Message(type: .text, who: "me", body: "Hello RxSwift!!"),
-            Message(type: .image, who: "me", body: imageURL),
-            Message(type: .text, who: "me", body: "Good\nGood\nGoodGoodGood"),
-            Message(type: .text, who: "you", body: "Hello")
-        ]))
+        let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, sceneCoordinator: sceneCoordinator, realm: try! Realm())
         
         let messageRoomScene = Scene.messageRoom(messageRoomViewModel)
         
