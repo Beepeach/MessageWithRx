@@ -2,14 +2,17 @@
 //  MessageRoom.swift
 //  RxMessage
 //
-//  Created by JunHeeJo on 5/23/22.
+//  Created by JunHeeJo on 5/27/22.
 //
 
 import Foundation
-import RealmSwift
 
-class MessageRoom: Object {
+class MessageRoom {
     // Int보다 ObjectID로 변경하는게 더 좋을듯
-    @Persisted(primaryKey: true) var id: Int = 0
-    @Persisted var allMessages: List<Message>
+    var id: Int
+    var allMessages: [Message] = []
+    
+    init(id: Int) {
+        self.id = id
+    }
 }

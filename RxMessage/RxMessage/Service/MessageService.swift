@@ -12,7 +12,7 @@ import Starscream
 
 protocol MessageService {
     func sendMessage(with text: String) -> Observable<Void>
-    func receiveMessage() -> Observable<Message>
+    func receiveMessage() -> Observable<RMMessage>
 }
 
 class EchoMessageService: MessageService {
@@ -31,7 +31,7 @@ class EchoMessageService: MessageService {
         webSocketManager.socket.rx.write(string: text)
     }
     
-    func receiveMessage() -> Observable<Message> {
+    func receiveMessage() -> Observable<RMMessage> {
         return webSocketManager.socket.rx.response
             .map { (event: WebSocketEvent) -> String in
                 switch event {
@@ -57,6 +57,6 @@ class EchoMessageService: MessageService {
                 }
             }
             .filter { $0.count > 0 }
-            .map { Message(type: .text, who: "you", body: $0, date: Date()) }
+            .map { RMMessage(type: .text, who: "you", body: $0, date: Date()) }
     }
 }

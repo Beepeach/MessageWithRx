@@ -13,7 +13,6 @@ import Then
 import Action
 
 class MessageRoomViewController: UIViewController, ViewModelBindableType {
-    
     // MARK: Private properties
     private let bag: DisposeBag = DisposeBag()
     private var messageTableView: UITableView = MessageRoomViewController.makeMessageTableView()
@@ -106,6 +105,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                 }
             }.disposed(by: bag)
         
+        // TODO: 
         // 여기서 바로 이미지를 가져올 수는 없을까??
         messageTableView.rx.modelSelected(Message.self)
             .compactMap { self.getImage(from: $0.body) }
@@ -252,7 +252,7 @@ extension MessageRoomViewController {
 
 
 // MARK: - Previews
-
+/*
 #if DEBUG
 import SwiftUI
 import RealmSwift
@@ -278,4 +278,4 @@ struct MessageRoomPreviewProvider: PreviewProvider {
     }
 }
 #endif
-
+*/

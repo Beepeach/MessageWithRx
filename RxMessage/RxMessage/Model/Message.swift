@@ -2,28 +2,25 @@
 //  Message.swift
 //  RxMessage
 //
-//  Created by JunHeeJo on 4/26/22.
+//  Created by JunHeeJo on 5/27/22.
 //
 
 import Foundation
-import RealmSwift
 
-class Message: Object {
-    @Persisted var type: MessageType = .text
-    @Persisted var who: String = ""
-    @Persisted var body: String = ""
-    @Persisted var date: Date = Date()
+class Message {
+    var type: MessageType
+    var who: String
+    var body: String
+    var date: Date = Date()
     
-    enum MessageType:String, PersistableEnum {
+    enum MessageType {
         case text
         case image
     }
     
-    convenience init(type: MessageType, who: String, body: String, date: Date) {
-        self.init()
+    init(type: MessageType, who: String, body: String) {
         self.type = type
         self.who = who
         self.body = body
-        self.date = date
     }
 }

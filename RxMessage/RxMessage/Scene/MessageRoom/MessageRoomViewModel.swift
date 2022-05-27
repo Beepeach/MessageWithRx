@@ -18,52 +18,39 @@ final class MessageRoomViewModel: CommonViewModel {
     let sendMessageSubject: PublishSubject<String>
     
     // MARK: Outputs
-    var messages: Driver<[Message]>
+    var messages: Driver<[RMMessage]>
     
     // MARK: Service
     let messageService: MessageService
-    let realm: Realm
+    let realmService: LocalDBService
 
     // MARK: Init
-    init(messageService: MessageService, sceneCoordinator: SceneCoordinatorType, realm: Realm) {
-        self.realm = realm
+    init(messageService: MessageService, realmService: LocalDBService, sceneCoordinator: SceneCoordinatorType) {
         self.messageService = messageService
+        self.realmService = realmService
         self.viewWillAppearSubject = PublishSubject<Void>()
         self.sendMessageSubject = PublishSubject<String>()
         
-        // Room을 생성해야하는데 어디서 만드는게 좋을까?
-        // 여기서 만드는건 좋은게 아닌듯
-        // 한번만 만들어야한다. 여러번 만들면 안된다.
-        if realm.object(ofType: MessageRoom.self, forPrimaryKey: 0) == nil {
-            try! realm.write {
-                realm.add(MessageRoom())
-            }
-        }
-        
-        let previousMessages = realm.object(ofType: MessageRoom.self, forPrimaryKey: 0)?.allMessages
-        
+        // TODO: 현재 너무 realm에 live object 기능에 의존한 코드이다.
+        // key도 메세지룸 별로 나눠야한다. 일단 0으로 통일
         let initMessage = viewWillAppearSubject
-            .map { _ in previousMessages?.sorted(by: { $0.date < $1.date}) ?? [] }
+            .flatMap { _ in realmService.queryAllMessages(from: 0) }
         
+        
+        // TODO: 서버에 전달이 완료되면!! 해야하는데 아직 못함
+        // MessageRoom에 대한 정보는 어디서 가져올까?? 일단 여기서는 0로 찾게 만들고 이후에 생각해보자.
         let sendMessage = sendMessageSubject
-            .map { text -> [Message] in
-                // 서버에 전달이 완료되면!! 해야하는데 아직 못함
-                // 로컬에 저장 다른 객체에서 하도록 하자
-                let message = Message(type: .text, who: "me", body: text, date: Date())
-          
-                try! realm.write {
-                    previousMessages?.append(message)
-                }
-
-                return previousMessages?.sorted(by: { $0.date < $1.date}) ?? []
-            }
+            .map { RMMessage(type: .text, who: "me", body: $0, date: Date()) }
+            .withLatestFrom(realmService.getMessageRoom(key: 0)) { (message: $0, messageRoom: $1) }
+            .flatMap { realmService.save(message: $0.message, to: $0.messageRoom) }
+            .flatMap { _ in realmService.queryAllMessages(from: 0) }
+            
         
-        let receiveMessage = messageService.receiveMessage().do(onNext: { message in
-            try! realm.write {
-                previousMessages?.append(message)
-            }
-        }).map { _ in previousMessages?.sorted(by: { $0.date < $1.date}) ?? [] }
-        
+        let receiveMessage = messageService.receiveMessage()
+            .withLatestFrom(realmService.getMessageRoom(key: 0)) { (message: $0, messageRoom: $1) }
+            .flatMap { realmService.save(message: $0.message, to: $0.messageRoom) }
+            .flatMap { _ in realmService.queryAllMessages(from: 0) }
+            
         
         let messages = Observable.merge(initMessage, sendMessage, receiveMessage)
         self.messages = messages.asDriver(onErrorJustReturn: [])
@@ -76,7 +63,6 @@ final class MessageRoomViewModel: CommonViewModel {
     lazy var detailImageAction: Action<UIImage, Void> = {
         Action { image in
             let detailImageViewModel = DetailImageViewModel(image: image, sceneCoordinator: self.sceneCoordinator)
-            
             let detailImageScene = Scene.detailImage(detailImageViewModel)
             
             return self.sceneCoordinator.transition(
