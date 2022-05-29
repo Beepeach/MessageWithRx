@@ -13,6 +13,7 @@ protocol LocalDBService {
     func save(message: RMMessage, to room: RMMessageRoom) -> Observable<Void>
     func queryAllMessages(from roomKey: Int) -> Observable<[RMMessage]>
     func getMessageRoom(key: Int) -> Observable<RMMessageRoom>
+    func queryAllMessageRoom() -> Observable<[RMMessageRoom]>
 }
 
 class RealmService: LocalDBService {
@@ -84,4 +85,27 @@ class RealmService: LocalDBService {
             return Disposables.create()
         }
     }
+    
+    func queryAllMessageRoom() -> Observable<[RMMessageRoom]> {
+        return Observable.create { observer in
+            let realm = self.realm
+            
+            let messageRooms = realm.objects(RMMessageRoom.self)
+            
+            // TODO: 최근 메세지 기준으로 정렬해야한다.
+            observer.onNext(messageRooms.toArray())
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
 }
+
+
+extension Results {
+    func toArray() -> [Element] {
+      return compactMap {
+        $0
+      }
+    }
+ }
