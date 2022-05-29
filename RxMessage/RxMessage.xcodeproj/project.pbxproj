@@ -31,6 +31,7 @@
 		EE72A6B2281A28E1008777D6 /* MessageRoomViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B1281A28E1008777D6 /* MessageRoomViewModelTests.swift */; };
 		EE72A6B4281A28F4008777D6 /* MessageRoomViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B3281A28F4008777D6 /* MessageRoomViewControllerTests.swift */; };
 		EE72A6B6281A2903008777D6 /* MessageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B5281A2903008777D6 /* MessageServiceTests.swift */; };
+		EE902C882843B3590055E9A3 /* MessageRoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE902C872843B3590055E9A3 /* MessageRoomListViewModel.swift */; };
 		EEB7CF8A2819103400D8FE72 /* MessageRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */; };
 		EEE23504282B915700FBF546 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23503282B915700FBF546 /* Scene.swift */; };
 		EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23505282B930D00FBF546 /* ViewModelBindableType.swift */; };
@@ -124,6 +125,7 @@
 		EE72A6B1281A28E1008777D6 /* MessageRoomViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewModelTests.swift; sourceTree = "<group>"; };
 		EE72A6B3281A28F4008777D6 /* MessageRoomViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewControllerTests.swift; sourceTree = "<group>"; };
 		EE72A6B5281A2903008777D6 /* MessageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServiceTests.swift; sourceTree = "<group>"; };
+		EE902C872843B3590055E9A3 /* MessageRoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomListViewModel.swift; sourceTree = "<group>"; };
 		EE9E2BAF2818FFE20088C138 /* RxMessageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxMessageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewModel.swift; sourceTree = "<group>"; };
 		EEE23503282B915700FBF546 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3785CC282DF92C00F2C2B8 /* Storyboard */,
+				EE902C862843B3450055E9A3 /* MessageRoomList */,
 				EE3785C9282DF89900F2C2B8 /* MessageRoom */,
 				EE3785CB282DF8FB00F2C2B8 /* DetailImage */,
 			);
@@ -321,6 +324,14 @@
 				EE5D447D2840661F00DEED5D /* Scene */,
 			);
 			path = RxMessage;
+			sourceTree = "<group>";
+		};
+		EE902C862843B3450055E9A3 /* MessageRoomList */ = {
+			isa = PBXGroup;
+			children = (
+				EE902C872843B3590055E9A3 /* MessageRoomListViewModel.swift */,
+			);
+			path = MessageRoomList;
 			sourceTree = "<group>";
 		};
 		EE9E2BB02818FFE20088C138 /* RxMessageTests */ = {
@@ -668,6 +679,7 @@
 				EEE23510282BA16200FBF546 /* SceneCoordinator.swift in Sources */,
 				EEE2350C282B966E00FBF546 /* SceneTransitionError.swift in Sources */,
 				EEEF846E28362BE3002BDF52 /* WebSocket+Rx.swift in Sources */,
+				EE902C882843B3590055E9A3 /* MessageRoomListViewModel.swift in Sources */,
 				EE3FA4952817CD1D001C55CE /* TextTableViewCell.swift in Sources */,
 				EE3FA49B2817F7DD001C55CE /* ViewWillAppear+Rx.swift in Sources */,
 				EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */,
