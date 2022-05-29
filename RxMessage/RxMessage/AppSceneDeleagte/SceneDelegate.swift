@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 import RxRelay
 import RealmSwift
 
@@ -23,10 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let messageRoomViewModel = MessageRoomViewModel(messageService: messageService, realmService: realmService, sceneCoordinator: sceneCoordinator)
         
         let messageRoomScene = Scene.messageRoom(messageRoomViewModel)
-        
-        // TODO: messageRoom이 만들어지는 시점을 정해야한다. 화면 전환이전?
-        // 현재는 key도 0으로 해놓자.
-        realmService.getMessageRoom(key: 0)
         
         sceneCoordinator.transition(to: messageRoomScene, using: .root)
     }

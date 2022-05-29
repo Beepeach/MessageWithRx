@@ -54,10 +54,11 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
             }
             .disposed(by: bag)
         
+            // TODO: 메시지가 왔을때 아래로 내리는건데  좋지 않은 코드이므로 변경이 필요
+            //.do(onNext: { [weak self] _ in
+            //   self?.messageTableView.setContentOffset(CGPoint(x: 0, y : CGFloat.greatestFiniteMagnitude), animated: true)
+            // })
         viewModel.messages
-            .do(onNext: { [weak self] _ in
-                self?.messageTableView.setContentOffset(CGPoint(x: 0, y : CGFloat.greatestFiniteMagnitude), animated: true)
-            })
             .drive(messageTableView.rx.items) { tableView, index, message in
                 let indexPath: IndexPath = IndexPath(row: index, section: 0)
                 
