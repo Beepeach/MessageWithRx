@@ -32,6 +32,7 @@
 		EE72A6B4281A28F4008777D6 /* MessageRoomViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B3281A28F4008777D6 /* MessageRoomViewControllerTests.swift */; };
 		EE72A6B6281A2903008777D6 /* MessageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE72A6B5281A2903008777D6 /* MessageServiceTests.swift */; };
 		EE902C882843B3590055E9A3 /* MessageRoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE902C872843B3590055E9A3 /* MessageRoomListViewModel.swift */; };
+		EE902C8A28445CF10055E9A3 /* KeyboardNoti+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE902C8928445CF10055E9A3 /* KeyboardNoti+Rx.swift */; };
 		EEB7CF8A2819103400D8FE72 /* MessageRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */; };
 		EEE23504282B915700FBF546 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23503282B915700FBF546 /* Scene.swift */; };
 		EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE23505282B930D00FBF546 /* ViewModelBindableType.swift */; };
@@ -126,6 +127,7 @@
 		EE72A6B3281A28F4008777D6 /* MessageRoomViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewControllerTests.swift; sourceTree = "<group>"; };
 		EE72A6B5281A2903008777D6 /* MessageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServiceTests.swift; sourceTree = "<group>"; };
 		EE902C872843B3590055E9A3 /* MessageRoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomListViewModel.swift; sourceTree = "<group>"; };
+		EE902C8928445CF10055E9A3 /* KeyboardNoti+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardNoti+Rx.swift"; sourceTree = "<group>"; };
 		EE9E2BAF2818FFE20088C138 /* RxMessageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxMessageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewModel.swift; sourceTree = "<group>"; };
 		EEE23503282B915700FBF546 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			children = (
 				EE3FA49A2817F7DD001C55CE /* ViewWillAppear+Rx.swift */,
 				EE71F9F0282CF65F00E07F0F /* ViewWillDisappear+Rx.swift */,
+				EE902C8928445CF10055E9A3 /* KeyboardNoti+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				EE3FA49B2817F7DD001C55CE /* ViewWillAppear+Rx.swift in Sources */,
 				EEE2350E282B9D2200FBF546 /* CommonViewModel.swift in Sources */,
 				EEE23514282C98D800FBF546 /* DetailImageViewController.swift in Sources */,
+				EE902C8A28445CF10055E9A3 /* KeyboardNoti+Rx.swift in Sources */,
 				EEEF84632835D087002BDF52 /* MyTextTableViewCell.swift in Sources */,
 				EEE2350A282B95F300FBF546 /* SceneTransitionStyle.swift in Sources */,
 				EEE23506282B930D00FBF546 /* ViewModelBindableType.swift in Sources */,

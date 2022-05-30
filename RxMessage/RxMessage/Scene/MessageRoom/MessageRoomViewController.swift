@@ -114,29 +114,6 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
             .compactMap { self.getImage(from: $0.body) }
             .bind(to: viewModel.detailImageAction.inputs)
             .disposed(by: bag)
-        
-        let keyboardHideNoti = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
-            .map { _ -> CGFloat in 0 }
-        let keyboardShowNoti = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
-            .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
-            .map { $0.height }
-        
-        Observable.merge(keyboardHideNoti, keyboardShowNoti)
-            .bind { height in
-                UIView.animate(withDuration: 0) {
-                    self.inputContainerView.snp.updateConstraints {
-                        $0.bottom.equalToSuperview().inset(height)
-                    }
-            
-                    // TableView도 함께 올라가는 모습으로 하려면 어떻게 하지..?
-                    self.messageTableView.snp.updateConstraints {
-                        $0.bottom.equalTo(self.inputContainerView.snp.top)
-                    }
-                    
-                    self.view.layoutIfNeeded()
-                }
-            }
-            .disposed(by: bag)
     }
     
     private func getImage(from url: String) -> UIImage? {
@@ -166,8 +143,8 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
 // MARK: - UI
 extension MessageRoomViewController {
     private func setupUI() {
-        setupInputContainerView()
         setupMessageTableViewUI()
+        setupInputContainerView()
     }
     
     private func setupMessageTableViewUI() {
@@ -175,7 +152,6 @@ extension MessageRoomViewController {
         
         messageTableView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(inputContainerView.snp.top)
         }
     }
     
@@ -183,7 +159,9 @@ extension MessageRoomViewController {
         view.addSubview(inputContainerView)
         
         inputContainerView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(messageTableView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
             $0.height.equalToSuperview().multipliedBy(0.1)
         }
         
