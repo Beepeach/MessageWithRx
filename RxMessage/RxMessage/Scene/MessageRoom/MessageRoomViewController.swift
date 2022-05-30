@@ -64,6 +64,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                 
                 switch message.type {
                 case .text:
+                    // 1. you에 대한 autolayout을 미리 만들고 사용하기
                     if message.who == "me" {
                         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTextTableViewCell.identifier, for: indexPath) as? MyTextTableViewCell else {
                             return MyTextTableViewCell()
@@ -87,6 +88,7 @@ class MessageRoomViewController: UIViewController, ViewModelBindableType {
                         return ImageTableViewCell()
                     }
                     
+                    // 2. 여기서 you textView autolayout 구현하기
                     if message.who != "me" {
                         cell.containerView.backgroundColor = .systemYellow
                         cell.containerView.snp.removeConstraints()
