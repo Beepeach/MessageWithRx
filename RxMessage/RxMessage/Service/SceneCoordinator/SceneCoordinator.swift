@@ -43,7 +43,6 @@ class SceneCoordinator: SceneCoordinatorType {
                 break
             }
             
-            // dispose를 왜 안하지..? 이 상태로 놔둬 메모리 누수가 없나??
             _ = navigationController.rx.didShow
                 .map { _ in }
                 .bind(to: subject)

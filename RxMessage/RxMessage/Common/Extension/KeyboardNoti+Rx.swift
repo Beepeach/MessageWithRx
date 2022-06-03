@@ -33,3 +33,10 @@ Observable.merge(keyboardHideNoti, keyboardShowNoti)
     }
     .disposed(by: bag)
  */
+
+
+
+    // TODO: 메시지가 왔을때 아래로 내리는건데  좋지 않은 코드이므로 변경이 필요
+    //.do(onNext: { [weak self] _ in
+    //   self?.messageTableView.setContentOffset(CGPoint(x: 0, y : CGFloat.greatestFiniteMagnitude), animated: true)
+    // })

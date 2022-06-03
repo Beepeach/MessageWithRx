@@ -23,7 +23,6 @@ class RealmService: LocalDBService {
     }
     
     // TODO: create라는 개념이 아니라 있나 없나 확인하고 있으면 room object리턴 없으면 create 이므로 메서드 이름을 바꾸는게 좋지않을까?
-    @discardableResult
     func getMessageRoom(key: Int) -> Observable<RMMessageRoom> {
         return Observable.create { observer in
             let realm = self.realm

@@ -207,8 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3785CA282DF8C300F2C2B8 /* View */,
-				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
-				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
+				EE70AA6A2848544B00C72419 /* ViewModel */,
 			);
 			path = MessageRoom;
 			sourceTree = "<group>";
@@ -216,6 +215,7 @@
 		EE3785CA282DF8C300F2C2B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE5E96A92817BBD000D78938 /* MessageRoomViewController.swift */,
 				EE3FA4962817D62E001C55CE /* ImageTableViewCell.swift */,
 				EE3FA4942817CD1D001C55CE /* TextTableViewCell.swift */,
 				EEEF84622835D087002BDF52 /* MyTextTableViewCell.swift */,
@@ -326,6 +326,14 @@
 				EE5D447D2840661F00DEED5D /* Scene */,
 			);
 			path = RxMessage;
+			sourceTree = "<group>";
+		};
+		EE70AA6A2848544B00C72419 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EEB7CF892819103400D8FE72 /* MessageRoomViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EE902C862843B3450055E9A3 /* MessageRoomList */ = {
