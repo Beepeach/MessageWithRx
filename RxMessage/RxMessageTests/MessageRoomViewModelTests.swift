@@ -7,18 +7,25 @@
 
 import XCTest
 import RxSwift
-import RxTest
 import RxBlocking
 @testable import RxMessage
 
 class MessageRoomViewModelTests: XCTestCase {
     var sut: MessageRoomViewModel!
     var scheduler: ConcurrentDispatchQueueScheduler!
+    var sceneCoordinator: SceneCoordinatorType!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = MessageRoomViewModel(messageService: DummyMessageSender())
         scheduler = ConcurrentDispatchQueueScheduler(qos: .default)
+        sceneCoordinator = MockSceneCoordinator(window: UIApplication.shared.windows.first!)
+    }
+    
+    override func tearDownWithError() throws {
+        sut = nil
+        scheduler = nil
+        sceneCoordinator = nil
     }
     
     func testDummyData_whenViewWillAppear_shouldEmit() {

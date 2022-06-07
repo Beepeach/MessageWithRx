@@ -11,6 +11,15 @@ import UIKit
 enum Scene {
     case messageRoom(MessageRoomViewModel)
     case detailImage(DetailImageViewModel)
+    
+    var associatedViewModel: CommonViewModel {
+        switch self {
+        case .messageRoom(let messageRoomViewModel):
+            return messageRoomViewModel
+        case .detailImage(let detailImageViewModel):
+            return detailImageViewModel
+        }
+    }
 }
 
 
